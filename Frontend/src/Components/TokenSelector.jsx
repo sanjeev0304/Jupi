@@ -1,4 +1,7 @@
 import { useEffect, useState } from "react";
+import "./TokenSelector.css";
+
+const SOL_MINT = "So11111111111111111111111111111111111111112";
 
 export default function TokenSelector() {
   const [tokens, setTokens] = useState([]);
@@ -24,7 +27,7 @@ export default function TokenSelector() {
   }, []);
 
   const handleCheckRisk = async () => {
-    if (!selectedToken) return alert("Select a token first");
+    if (!selectedToken) return alert("Please select a token.");
     setRiskLoading(true);
     setRiskData(null);
 
@@ -38,71 +41,87 @@ export default function TokenSelector() {
       const data = await res.json();
       setRiskData(data);
     } catch (err) {
-      console.error("Risk check failed:", err);
+      console.error("Risk fetch error:", err);
+      alert("Risk check failed. Try again.");
     } finally {
       setRiskLoading(false);
     }
   };
 
+  const handleSwapNow = () => {
+    const explorer = `https://jup.ag/swap/SOL-${selectedToken.symbol}?amount=1`;
+    window.open(explorer, "_blank");
+  };
+
+  const isHighRisk = () => {
+    if (!riskData?.warnings) return false;
+    return riskData.warnings.some(
+      (warn) => warn.type === "LOW_ORGANIC_ACTIVITY" 
+    );
+  };
+
   return (
-    <div className="p-4">
-      <label className="block font-semibold mb-2">Select Token to Buy:</label>
+    <div className="token-wrapper">
+      <h2 className="title">🛡️ Token Risk Analyzer</h2>
 
       {loading ? (
-        <p>Loading tokens...</p>
+        <p className="loading-text">Loading tokens...</p>
       ) : (
         <>
-          <select
-            className="w-full border p-2 rounded bg-white"
-            onChange={(e) => {
-              const selected = tokens.find(t => t.mint === e.target.value);
-              setSelectedToken(selected);
-            }}
-          >
-            <option value="">-- Choose a Token --</option>
-            {tokens.map((token) => (
-              <option key={token.mint} value={token.mint}>
-                {token.symbol} - {token.name || token.mint.slice(0, 4) + "..." + token.mint.slice(-4)}
-              </option>
-            ))}
-          </select>
+          <div className="selector-box">
+            <select
+              className="dropdown"
+              onChange={(e) => {
+                const selected = tokens.find(t => t.mint === e.target.value);
+                setSelectedToken(selected);
+                setRiskData(null);
+              }}
+            >
+              <option value="">-- Choose a Token --</option>
+              {tokens.map((token) => (
+                <option key={token.mint} value={token.mint}>
+                  {token.symbol} - {token.name || token.mint.slice(0, 4) + "..." + token.mint.slice(-4)}
+                </option>
+              ))}
+            </select>
 
-          <button
-            onClick={handleCheckRisk}
-            className="mt-4 px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
-          >
-            {riskLoading ? "Checking..." : "Check Risk"}
-          </button>
+            <button
+              onClick={handleCheckRisk}
+              disabled={!selectedToken || riskLoading}
+              className="check-button"
+            >
+              {riskLoading ? "Checking..." : "Check Risk"}
+            </button>
+          </div>
 
           {riskData && (
-  <div className="mt-4 p-3 bg-gray-100 rounded border">
-    <h3 className="font-semibold mb-2">🛡️ Risk Info</h3>
+            <div className="risk-report">
+              <h3 className="report-title">📊 Risk Report</h3>
 
-    {riskData.warnings?.length === 0 ? (
-      <p className="text-green-600">✅ No warnings — token looks safe.</p>
-    ) : (
-      (() => {
-        const lowOrganic = riskData.warnings.find(
-          (warn) => warn.type === "LOW_ORGANIC_ACTIVITY"
-        );
+              {riskData.warnings.length === 0 ? (
+                <div className="safe-box">✅ No warnings — token looks safe!</div>
+              ) : (
+                <div className="warning-box">
+                  ⚠️ <strong>Warnings Detected</strong>
+                  <ul>
+                    {riskData.warnings.map((w, i) => (
+                      <li key={i}>
+                        {w.type} 
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
 
-        return lowOrganic ? (
-          <div className="text-red-600">
-            ⚠️ <strong>Risky Token:</strong> Low Organic Activity detected.
-          </div>
-        ) : (
-          <p className="text-green-600">✅ Token has warnings but not related to Low Organic Activity.</p>
-        );
-      })()
-    )}
-  </div>
-)}
-
+              {isHighRisk() && (
+                <button className="swap-button" onClick={handleSwapNow}>
+                  🚨 Swap Risky Token
+                </button>
+              )}
+            </div>
+          )}
         </>
       )}
     </div>
   );
 }
-
-
-

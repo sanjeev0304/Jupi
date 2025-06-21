@@ -1,0 +1,113 @@
+/* .wallet-card {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    color: #fff;
+    font-family: 'Segoe UI', sans-serif;
+    box-shadow: 0 0 15px rgba(147, 51, 234, 0.1);
+    background-color: #1c1c2c;
+  }
+  
+  .wallet-title {
+    font-size: 22px;
+    font-weight: 600;
+    color: #e2e8f0;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .wallet-address,
+  .wallet-balance {
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #2d2d3c;
+    font-size: 14px;
+  }
+  
+  .label {
+    color: #94a3b8;
+    font-weight: 500;
+  }
+  
+  .value {
+    font-family: monospace;
+    color: #fef08a;
+  }
+  
+  .wallet-tokens {
+    margin-top: 20px;
+  }
+  
+  .token-list {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .token-item {
+    display: flex;
+    justify-content: space-between;
+    background: #252530;
+    border: 1px solid #373745;
+    padding: 10px 14px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+  }
+  
+  .token-item:hover {
+    background: #3a3a4f;
+    border-color: #7c3aed;
+    box-shadow: 0 0 8px #8b5cf666;
+  }
+  
+  .token-mint {
+    font-family: monospace;
+    font-size: 13px;
+    color: #cbd5e1;
+  }
+  
+  .token-amount {
+    font-weight: 600;
+    color: #22d3ee;
+  }
+  
+  .empty {
+    text-align: center;
+    color: #64748b;
+  }
+   */
+
+
+
+   .risk-badge {
+    margin-left: 1rem;
+    font-size: 0.85rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  
+  .risk-badge.safe {
+    background-color: rgba(0, 184, 148, 0.1);
+    color: var(--success);
+  }
+  
+  .risk-badge.warning {
+    background-color: rgba(253, 203, 110, 0.1);
+    color: var(--warning);
+  }
+  
+  .risk-badge.high {
+    background-color: rgba(255, 107, 107, 0.1);
+    color: var(--danger);
+  }
+  

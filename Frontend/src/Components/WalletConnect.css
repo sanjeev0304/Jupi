@@ -1,0 +1,35 @@
+.wallet-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+  }
+  
+  /* Override default WalletMultiButton styles */
+  .custom-wallet-button {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: #fff !important;
+    border-radius: 12px !important;
+    padding: 12px 24px !important;
+    font-weight: 600;
+    font-size: 16px;
+    border: none !important;
+    box-shadow: 0 0 15px #7c3aed88;
+    transition: all 0.3s ease;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .custom-wallet-button:hover {
+    background: linear-gradient(135deg, #7c3aed, #a78bfa);
+    transform: scale(1.03);
+    box-shadow: 0 0 20px #8b5cf6aa;
+  }
+  
+  .custom-wallet-button:active {
+    transform: scale(0.97);
+  }
+  
+  .custom-wallet-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  

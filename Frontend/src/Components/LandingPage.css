@@ -1,0 +1,115 @@
+.landing-page {
+    background-color: #0f0c29;
+    color: #ffffff;
+    font-family: 'Segoe UI', sans-serif;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .hero-section {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 16px;
+  }
+  
+  .hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #fef08a;
+    margin-bottom: 16px;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.25rem;
+    max-width: 720px;
+    margin-bottom: 32px;
+    color: #cbd5e1;
+  }
+  
+  .cta-button {
+    padding: 12px 28px;
+    background: linear-gradient(90deg, #6366f1, #8b5cf6);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0 0 12px #7c3aed;
+    transition: all 0.3s ease;
+  }
+  
+  .cta-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px #8b5cf6aa;
+  }
+  
+  .info-section {
+    padding: 60px 16px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  
+  .info-section h2 {
+    font-size: 1.75rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 40px;
+    color: #facc15;
+    font-weight: 600;
+  }
+  
+  .info-section p,
+  .info-section ul {
+    font-size: 16px;
+    color: #e2e8f0;
+    line-height: 1.7;
+  }
+  
+  .info-section ul {
+    padding-left: 24px;
+    margin-top: 12px;
+    list-style-type: disc;
+  }
+  
+  .info-section ul li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: start;
+    gap: 10px;
+  }
+  
+  .cta-secondary {
+    display: inline-block;
+    margin-top: 40px;
+    font-weight: bold;
+    color: #a78bfa;
+    text-decoration: none;
+    border-bottom: 2px solid #a78bfa;
+    padding-bottom: 4px;
+    transition: color 0.2s ease;
+  }
+  
+  .cta-secondary:hover {
+    color: #d8b4fe;
+    border-color: #d8b4fe;
+  }
+  
+  .section-image {
+    margin: 40px 0;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .section-image img {
+    width: 100%;
+    max-width: 960px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    object-fit: cover;
+  }
+  

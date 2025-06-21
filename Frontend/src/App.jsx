@@ -1,17 +1,22 @@
-import WalletConnect from "./Components/WalletConnection";
-import WalletInfo from "./Components/WalletInfor";
-import NetworkSelector from "./Components/NetwrokSelector";
-import TokenSelector from "./Components/TokenSelector";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import LandingPage from "./Components/LandingPage";
+import Dashboard from "./Components/Dashboard";
+import Navbar from "./Components/Navbar";
+import RiskPrediction from "./Components/RiskPrediction";
+import "./App.css";
+
 function App() {
   return (
-    <div className="min-h-screen bg-gray-100">
-      <h1 className="text-3xl font-bold text-center mt-10">SafeSwap</h1>
-      {/* <NetworkSelector /> */}
-      <WalletConnect />
-      < WalletInfo />
-      <TokenSelector />
-
-    </div>
+    <Router>
+      <div className="app-wrapper">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/risk" element={<RiskPrediction />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
