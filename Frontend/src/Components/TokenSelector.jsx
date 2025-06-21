@@ -13,7 +13,7 @@ export default function TokenSelector() {
   useEffect(() => {
     const fetchTokens = async () => {
       try {
-        const res = await fetch("http://localhost:3001/api/tokens");
+        const res = await fetch("https://jupi-jj8t.onrender.com/api/tokens");
         const data = await res.json();
         setTokens(data);
       } catch (err) {
@@ -32,7 +32,7 @@ export default function TokenSelector() {
     setRiskData(null);
 
     try {
-      const res = await fetch("http://localhost:3001/api/risk", {
+      const res = await fetch("https://jupi-jj8t.onrender.com/api/risk", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ mint: selectedToken.mint }),

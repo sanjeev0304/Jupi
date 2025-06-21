@@ -11,7 +11,7 @@ export default function WalletInfo() {
       const risks = {};
       for (const token of tokens) {
         try {
-          const res = await fetch("http://localhost:3001/api/risk", {
+          const res = await fetch("https://jupi-jj8t.onrender.com/api/risk", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ mint: token.mint }),
