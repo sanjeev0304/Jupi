@@ -29,6 +29,35 @@ app.get("/api/tokens", async (req, res) => {
   }
 });
 
+app.post("/api/risk", async (req, res) => {
+  const { mint } = req.body;
+
+  if (!mint) return res.status(400).json({ error: "Mint address required" });
+
+  try {
+    const url = `https://lite-api.jup.ag/ultra/v1/shield?mints=${mint}`;
+    const response = await axios.get(url, {
+      headers: { Accept: "application/json" },
+    });
+
+    const riskData = response.data?.warnings?.[mint];
+
+    if (!riskData) {
+      return res.status(200).json({
+        mint,
+        warnings: [],
+        message: "No warnings, token not flagged",
+      });
+    }
+
+    res.json({ mint, warnings: riskData });
+  } catch (err) {
+    console.error("Shield API error:", err.message);
+    res.status(500).json({ error: "Shield API fetch failed" });
+  }
+});
+
+
 // ✅ Server running
 const PORT = 3001;
 app.listen(PORT, () => {
