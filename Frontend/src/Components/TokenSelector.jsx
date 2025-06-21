@@ -75,19 +75,29 @@ export default function TokenSelector() {
           </button>
 
           {riskData && (
-            <div className="mt-4 p-3 bg-gray-100 rounded border">
-              <h3 className="font-semibold mb-2">🛡️ Shield Warnings</h3>
-              {riskData.warnings.length === 0 ? (
-                <p className="text-green-600">No warnings — token looks safe.</p>
-              ) : (
-                riskData.warnings.map((warn, i) => (
-                  <div key={i} className="mb-2">
-                    <strong>{warn.type} ({warn.severity}):</strong> {warn.message}
-                  </div>
-                ))
-              )}
-            </div>
-          )}
+  <div className="mt-4 p-3 bg-gray-100 rounded border">
+    <h3 className="font-semibold mb-2">🛡️ Risk Info</h3>
+
+    {riskData.warnings?.length === 0 ? (
+      <p className="text-green-600">✅ No warnings — token looks safe.</p>
+    ) : (
+      (() => {
+        const lowOrganic = riskData.warnings.find(
+          (warn) => warn.type === "LOW_ORGANIC_ACTIVITY"
+        );
+
+        return lowOrganic ? (
+          <div className="text-red-600">
+            ⚠️ <strong>Risky Token:</strong> Low Organic Activity detected.
+          </div>
+        ) : (
+          <p className="text-green-600">✅ Token has warnings but not related to Low Organic Activity.</p>
+        );
+      })()
+    )}
+  </div>
+)}
+
         </>
       )}
     </div>
